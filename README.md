@@ -1,2 +1,2 @@
 # Web-Scraper
-Modular application to create python based web scrapers
+This python script serves as a configurable web scraper that takes user input

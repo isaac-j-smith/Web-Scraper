@@ -49,5 +49,5 @@ class Layout(QWidget):
         msg.setWindowTitle("Complete")
         msg.setDetailedText(str(formatted))
         msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Close)
-
+        msg.setFixedWidth(500)
         msg.exec_()

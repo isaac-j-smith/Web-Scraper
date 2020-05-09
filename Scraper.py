@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup as bs
 class Scraper:
     def __init__(self, url, container, category):
 
-        self.category = category.split(", ")
-        self.container = container
+        self.category = category.split(",")
+        self.container = container.strip()
         self.url = url.strip()
         self.soup = None
         self.container_list = []
@@ -19,7 +19,8 @@ class Scraper:
     def grab_values(self, current_container):
         result = []
         for item in self.category:
-            result.append(current_container.find(class_=item).get_text())
+            item = item.strip()
+            result.append(current_container.find(class_=item).get_text().strip())
 
         return result
 

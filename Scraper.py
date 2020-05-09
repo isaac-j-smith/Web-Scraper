@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup as bs
 class Scraper:
     def __init__(self, url, container, category):
 
-        self.category = category.split(",")
+        self.category = category.split(", ")
         self.container = container
         self.url = url.strip()
         self.soup = None

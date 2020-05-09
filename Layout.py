@@ -1,5 +1,5 @@
 from PyQt5.QtCore import *
-from PyQt5.QtWidgets import QLabel, QVBoxLayout, QLineEdit, QPushButton, QWidget, QMessageBox
+from PyQt5.QtWidgets import QLabel, QVBoxLayout, QLineEdit, QPushButton, QWidget, QMessageBox, QFormLayout
 
 import Scraper
 
@@ -11,20 +11,23 @@ class Layout(QWidget):
         self.container = QLineEdit(self)
         self.url = QLineEdit(self)
         self.button = QPushButton('< Scrape >', self)
-        self.layout = QVBoxLayout(self)
+        self.layout = QFormLayout(self)
         self.label = QLabel('')
         self.layout.setAlignment(Qt.AlignTop)
-        self.layout.setContentsMargins(20, 50, 20, 20)
+        self.layout.setContentsMargins(20, 20, 20, 20)
         self.build()
 
     def build(self):
+        self.setTabOrder(self.url, self.container)
+        self.setTabOrder(self.container, self.records)
+        self.setTabOrder(self.records, self.button)
+
         self.layout.setSpacing(25)
-        self.layout.addWidget(QLabel('Enter a url to scrape:'))
-        self.layout.addWidget(self.url)
-        self.layout.addWidget(QLabel('Enter the container\'s class:'))
-        self.layout.addWidget(self.container)
-        self.layout.addWidget(QLabel('Enter the category classes:'))
-        self.layout.addWidget(self.records)
+        self.layout.addRow(QLabel('URL:'), self.url)
+
+        self.layout.addRow(QLabel('Container class name:'), self.container)
+
+        self.layout.addRow(QLabel('Category class names \n(comma separated):'), self.records)
 
         self.layout.addWidget(self.button)
         self.button.clicked.connect(self.on_click)
